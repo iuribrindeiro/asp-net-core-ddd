@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entidades;
+using Domain.Exceptions.Usuario;
 using Domain.Models;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +17,10 @@ namespace Identity.Services
 
         public async Task SalvarAsync(Usuario usuario)
         {
-            await _userManager.CreateAsync(usuario);
+            var result = await _userManager.CreateAsync(usuario);
+            
+            if (!result.Succeeded)
+                throw new ErroAoCriarUsuarioException(result.Errors.Select(e => new ErroSalvarUsuario() { Descricao = e.Description, Codigo = e.Code}));
         }
 
         public async Task AtualizarAsync(Usuario usuario)

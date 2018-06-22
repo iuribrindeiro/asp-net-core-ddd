@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Data.Context;
+using Domain.Entidades;
 using Domain.Exceptions;
-using Domain.Models;
 using Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

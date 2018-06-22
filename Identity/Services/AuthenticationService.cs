@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Domain.Entidades;
 using Domain.Exceptions;
-using Domain.Models;
+using Domain.Exceptions.Authenticacao;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Domain.Models;
+using Domain.Entidades;
 using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Stores

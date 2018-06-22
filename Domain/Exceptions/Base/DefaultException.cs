@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Exceptions
+namespace Domain.Exceptions.Base
 {
     public abstract class DefaultException : Exception
     {

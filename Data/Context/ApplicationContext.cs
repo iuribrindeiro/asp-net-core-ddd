@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Data.Mappings;
-using Domain.Models;
+using Domain.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context

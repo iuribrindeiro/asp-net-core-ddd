@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain.Entidades;
 using Domain.Exceptions;
-using Domain.Models;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +17,9 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public IActionResult Post([FromBody] Usuario usuario)
+        public async Task<IActionResult> Post([FromBody] Usuario usuario)
         {
-            _usuariosService.SalvarAsync(usuario);
+            await _usuariosService.SalvarAsync(usuario);
             
             return CreatedAtAction(nameof(Get), new { id = usuario.Id }, usuario);
         }

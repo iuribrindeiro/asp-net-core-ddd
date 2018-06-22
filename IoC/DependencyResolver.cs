@@ -1,7 +1,7 @@
 ﻿using System;
 using Data.Context;
 using Data.Repositories;
-using Domain.Models;
+using Domain.Entidades;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Identity.Services;
