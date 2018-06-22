@@ -1,0 +1,53 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Projetos\\AuthenticationUserApi\\IoC\\IoC.csproj",
+    "projectName": "IoC",
+    "projectPath": "C:\\Projetos\\AuthenticationUserApi\\IoC\\IoC.csproj",
+    "outputPath": "C:\\Projetos\\AuthenticationUserApi\\IoC\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "C:\\Projetos\\AuthenticationUserApi\\Data\\Data.csproj": {
+            "projectPath": "C:\\Projetos\\AuthenticationUserApi\\Data\\Data.csproj"
+          },
+          "C:\\Projetos\\AuthenticationUserApi\\Domain\\Domain.csproj": {
+            "projectPath": "C:\\Projetos\\AuthenticationUserApi\\Domain\\Domain.csproj"
+          },
+          "C:\\Projetos\\AuthenticationUserApi\\Identity\\Identity.csproj": {
+            "projectPath": "C:\\Projetos\\AuthenticationUserApi\\Identity\\Identity.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
