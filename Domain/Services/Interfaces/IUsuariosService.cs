@@ -6,7 +6,7 @@ namespace Domain.Services.Interfaces
 {
     public interface IUsuariosService
     {
-        Task SalvarAsync(Usuario usuario);
+        Task SalvarAsync(Usuario usuario, string password);
         Task AtualizarAsync(Usuario usuario);
         Task DeletarAsync(Guid id);
         Task<Usuario> BuscarAsync(string id);

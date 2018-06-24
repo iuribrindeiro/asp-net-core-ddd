@@ -1,8 +1,11 @@
-﻿using IoC;
+﻿using System.Globalization;
+using IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation.Resources;
 
 namespace Presentation
 {
@@ -19,7 +22,10 @@ namespace Presentation
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddDataAnnotationsLocalization(options => {
+                options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    factory.Create(typeof(ValidationMessages));
+            });
             services.AddAuthentication();
             DepedencyResolver.Resolve(services, Configuration);
         }

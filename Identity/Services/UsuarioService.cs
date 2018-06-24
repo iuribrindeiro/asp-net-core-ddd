@@ -15,9 +15,9 @@ namespace Identity.Services
         
         public UsuarioService(UserManager<Usuario> userManager) => _userManager = userManager;
 
-        public async Task SalvarAsync(Usuario usuario)
+        public async Task SalvarAsync(Usuario usuario, string password)
         {
-            var result = await _userManager.CreateAsync(usuario);
+            var result = await _userManager.CreateAsync(usuario, password);
             
             if (!result.Succeeded)
                 throw new ErroAoCriarUsuarioException(result.Errors.Select(e => new ErroSalvarUsuario() { Descricao = e.Description, Codigo = e.Code}));

@@ -1,1 +1,12 @@
 .idea/
+Data/bin
+Data/obj
+Domain/bin
+Domain/obj
+Identity/obj
+Identity/bin
+IoC/bin
+IoC/obj
+Presentation/obj
+Presentation/bin
+.vs/

@@ -5,11 +5,9 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{EE8B5D2D-B6D8-4099-BA7E-339C720D74C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation\Presentation.csproj", "{39035FFC-A377-4D93-BCDD-F71E4B17BE24}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{43CC852D-9191-4B22-AE8B-6DE99EC5836D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{0AC2FA6F-26EE-49D4-9E38-A971D7726081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{0AC2FA6F-26EE-49D4-9E38-A971D7726081}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{67AC7B65-153F-4807-95CC-76229241F138}"
 EndProject
@@ -19,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{89
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{9BCA572D-4D60-425E-8C80-D642690E9E01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{ACF5035A-1230-4C00-8EF5-FF9721C96819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{ACF5035A-1230-4C00-8EF5-FF9721C96819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{7D3FF5AF-E25B-46E5-85A9-45426D036FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{7D3FF5AF-E25B-46E5-85A9-45426D036FD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC", "IoC\IoC.csproj", "{12368EA5-BB2F-47D7-9338-077F4FEEE446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC", "IoC\IoC.csproj", "{12368EA5-BB2F-47D7-9338-077F4FEEE446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{AF37207F-33B6-444A-9236-B0F1ABA80659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{AF37207F-33B6-444A-9236-B0F1ABA80659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39035FFC-A377-4D93-BCDD-F71E4B17BE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39035FFC-A377-4D93-BCDD-F71E4B17BE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39035FFC-A377-4D93-BCDD-F71E4B17BE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39035FFC-A377-4D93-BCDD-F71E4B17BE24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AC2FA6F-26EE-49D4-9E38-A971D7726081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0AC2FA6F-26EE-49D4-9E38-A971D7726081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC2FA6F-26EE-49D4-9E38-A971D7726081}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,7 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{39035FFC-A377-4D93-BCDD-F71E4B17BE24} = {EE8B5D2D-B6D8-4099-BA7E-339C720D74C9}
 		{0AC2FA6F-26EE-49D4-9E38-A971D7726081} = {43CC852D-9191-4B22-AE8B-6DE99EC5836D}
 		{229E4768-5718-44EA-8C6F-0935AA51F47D} = {67AC7B65-153F-4807-95CC-76229241F138}
 		{897F24D6-37F3-45ED-9D73-C2FA19C7E45D} = {67AC7B65-153F-4807-95CC-76229241F138}

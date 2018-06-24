@@ -4,6 +4,7 @@ using Domain.Entidades;
 using Domain.Exceptions;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ViewModels;
 
 namespace Presentation.Controllers
 {
@@ -17,11 +18,11 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> Post([FromBody] Usuario usuario)
+        public async Task<IActionResult> Post([FromBody] UsuarioViewModel usuario)
         {
-            await _usuariosService.SalvarAsync(usuario);
+            await _usuariosService.SalvarAsync(new Usuario(), "lol");
             
-            return CreatedAtAction(nameof(Get), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(Get), new { id = 1 }, usuario);
         }
 
         [HttpGet("{id}")]
