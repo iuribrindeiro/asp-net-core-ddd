@@ -34,7 +34,7 @@ namespace Identity.Stores
         {
             try
             {
-                return await _usuarioRepository.BuscarPorEmailAsync(normalizedEmail.ToLower());
+                return await _usuarioRepository.BuscarPorEmailAsync(normalizedEmail);
             }
             catch (EntidadeNaoEncontradaException)
             {
@@ -45,7 +45,7 @@ namespace Identity.Stores
 
         public Task<string> GetNormalizedEmailAsync(Usuario user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.Email.ToUpper());
+            return Task.FromResult(user.Email);
         }
 
         public Task SetNormalizedEmailAsync(Usuario user, string normalizedEmail, CancellationToken cancellationToken)

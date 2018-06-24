@@ -9,5 +9,7 @@ IoC/bin
 IoC/obj
 Presentation/obj
 Presentation/bin
+Bus/obj
+Bus/bin
 .vs/
 .vscode/

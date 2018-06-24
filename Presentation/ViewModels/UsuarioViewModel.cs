@@ -9,7 +9,7 @@ namespace Presentation.ViewModels
         private string _userName;
 
         [Required(ErrorMessage = "UserNameRequired")]
-        [StringLength(10, MinimumLength = 6, ErrorMessage = "UserNameInvalidLength")]
+        [MinLength(6, ErrorMessage = "UserNameInvalidLength")]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "UserNameInvalid")]
         public string UserName
         {

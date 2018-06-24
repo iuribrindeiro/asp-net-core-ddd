@@ -10,7 +10,7 @@ namespace Data.Mappings
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder.HasIndex(u => u.Id);
-            builder.Property(u => u.UserName).HasMaxLength(10).IsRequired();
+            builder.Property(u => u.UserName).IsRequired();
             builder.Property(u => u.CadastroConfirmado).IsRequired();
             builder.Property(u => u.Lembrar).IsRequired();
             builder.Property(u => u.CPFCNPJ).IsRequired().HasMaxLength(14);

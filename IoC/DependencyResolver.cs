@@ -1,11 +1,17 @@
 ﻿using System;
+using Bus.Events;
+using Bus.Handlers;
 using Data.Context;
 using Data.Repositories;
+using Data.UnitOfWor;
 using Domain.Entidades;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
+using Domain.UnitOfWork.Interfaces;
+using Identity.DependencyResolver;
 using Identity.Services;
 using Identity.Stores;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,36 +19,21 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IoC
 {
-    public class DepedencyResolver
+    public static class DepedencyResolver
     {
-        public static void Resolve(IServiceCollection services, IConfiguration configuration)
+        public static void ResolveDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentity<Usuario, TipoUsuario>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireNonAlphanumeric = false;
-                
-                options.Lockout.AllowedForNewUsers = true;
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-
-                options.SignIn.RequireConfirmedEmail = true;
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-
-                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
-                options.User.RequireUniqueEmail = true;
-            }).AddDefaultTokenProviders();
+            services.AddCustomIdentity();
+            services.AddMediatR();
             
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("UsersConnectionString")))
                 .AddTransient<IUserStore<Usuario>, UserStore>()
+                .AddScoped<IUnitOfWork, UnitOfWork>()
                 .AddScoped<IUsuarioRepository, UsuarioRepository>()
                 .AddTransient<IUsuariosService, UsuarioService>()
-                .AddTransient<IAuthenticationService, AuthenticationService>();
+                .AddTransient<IAuthenticationService, AuthenticationService>()
+                .AddTransient<INotificationHandler<CommitEvent>, CommitHandler>();
         }
     }
 }

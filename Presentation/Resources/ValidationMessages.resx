@@ -121,7 +121,7 @@
     <value>O Nome de Usuário é obrigatório</value>
   </data>
   <data name="UserNameInvalidLength" xml:space="preserve">
-    <value>O Nome de Usuário deve conter de 4 a 10 caracteres</value>
+    <value>O Nome de Usuário deve conter no mínimo 6 letras</value>
   </data>
   <data name="UserNameInvalid" xml:space="preserve">
     <value>O Nome de Usuário deve conter apenas letras</value>

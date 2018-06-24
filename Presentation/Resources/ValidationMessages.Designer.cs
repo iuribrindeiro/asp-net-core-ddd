@@ -187,7 +187,7 @@ namespace Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O Nome de Usuário deve conter de 4 a 10 caracteres.
+        ///   Looks up a localized string similar to O Nome de Usuário deve conter no mínimo 6 letras.
         /// </summary>
         public static string UserNameInvalidLength {
             get {

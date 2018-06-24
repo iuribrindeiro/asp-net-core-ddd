@@ -20,6 +20,9 @@ namespace Data.Context
         
         public override int SaveChanges()
         {
+            if (!ChangeTracker.Entries().Any())
+                return 0;
+            
             AddDateTimes();
             return base.SaveChanges();
         }
