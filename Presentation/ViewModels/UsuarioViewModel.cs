@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Presentation.ValidatorAttributes;
+using Presentation.Attributes.ModelAttributes;
 
 namespace Presentation.ViewModels
 {

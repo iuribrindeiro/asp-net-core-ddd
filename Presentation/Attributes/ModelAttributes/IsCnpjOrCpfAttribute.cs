@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Presentation.ValidatorAttributes
+namespace Presentation.Attributes.ModelAttributes
 {
     public class IsCnpjOrCpfAttribute : ValidationAttribute
     {

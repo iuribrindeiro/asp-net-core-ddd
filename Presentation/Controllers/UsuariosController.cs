@@ -4,13 +4,13 @@ using Domain.Entidades;
 using Domain.Exceptions;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Controllers.Base;
 using Presentation.ViewModels;
 
 namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class UsuariosController : ControllerBase
+    public class UsuariosController : BaseApiController
     {
         private readonly IUsuariosService _usuariosService;
 
@@ -18,8 +18,8 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> Post([FromBody] UsuarioViewModel usuario)
-        {
+        public async Task<IActionResult> Post([FromBody]UsuarioViewModel usuario)
+        {   
             await _usuariosService.SalvarAsync(new Usuario(), "lol");
             
             return CreatedAtAction(nameof(Get), new { id = 1 }, usuario);
