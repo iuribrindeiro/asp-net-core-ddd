@@ -133,6 +133,24 @@ namespace Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Senha precisa conter letras, números, pelo menos 1(um) caractere menúsculo e 1(um) maiúsculo.
+        /// </summary>
+        public static string PasswordInvalid {
+            get {
+                return ResourceManager.GetString("PasswordInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Senha precisa ter no mínimo 6 caracteres.
+        /// </summary>
+        public static string PasswordInvlidLength {
+            get {
+                return ResourceManager.GetString("PasswordInvlidLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Senha é obrigatória.
         /// </summary>
         public static string PasswordRequired {
@@ -160,11 +178,20 @@ namespace Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O Nome de Usuário deve conter apenas letras.
+        /// </summary>
+        public static string UserNameInvalid {
+            get {
+                return ResourceManager.GetString("UserNameInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O Nome de Usuário deve conter de 4 a 10 caracteres.
         /// </summary>
-        public static string UserNameInvaid {
+        public static string UserNameInvalidLength {
             get {
-                return ResourceManager.GetString("UserNameInvaid", resourceCulture);
+                return ResourceManager.GetString("UserNameInvalidLength", resourceCulture);
             }
         }
         

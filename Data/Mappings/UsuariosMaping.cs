@@ -15,7 +15,7 @@ namespace Data.Mappings
             builder.Property(u => u.Lembrar).IsRequired();
             builder.Property(u => u.CPFCNPJ).IsRequired().HasMaxLength(14);
             builder.Property(u => u.DataNascimento);
-            builder.Property(u => u.Ddd).IsRequired();
+            builder.Property(u => u.Ddd).HasMaxLength(2).IsRequired();
             builder.Property(u => u.Telefone).IsRequired().HasMaxLength(9);
             builder.Property(u => u.Email).IsRequired();
             builder.Property(u => u.PasswordHash).IsRequired();

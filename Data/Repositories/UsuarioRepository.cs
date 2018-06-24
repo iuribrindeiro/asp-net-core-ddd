@@ -119,5 +119,26 @@ namespace Data.Repositories
                 throw new ErroAoBuscarException(e);
             }
         }
+
+        public async Task<Usuario> BuscarPorEmailAsync(string email)
+        {
+            try
+            {
+                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
+                
+                if (usuario == null)
+                    throw new EntidadeNaoEncontradaException();
+
+                return usuario;
+            }
+            catch (EntidadeNaoEncontradaException)
+            {
+                throw;
+            }
+            catch (Exception e)
+            {
+                throw new ErroAoBuscarException(e);
+            }
+        }
     }
 }

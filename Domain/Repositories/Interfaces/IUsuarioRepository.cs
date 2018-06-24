@@ -12,5 +12,6 @@ namespace Domain.Repositories.Interfaces
         Task<Usuario> BuscarAsync(Guid id);
         Task<Usuario> BuscarPorNomeAsync(string nome);
         Task<Usuario> BuscarPorLoginOuEmailAsync(Usuario usuario);
+        Task<Usuario> BuscarPorEmailAsync(string email);
     }
 }

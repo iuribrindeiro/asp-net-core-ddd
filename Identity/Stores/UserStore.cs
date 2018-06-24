@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Stores
 {
-    public class UserStore : IUserStore<Usuario>
+    public partial class UserStore : IUserStore<Usuario>
     {
         private readonly IUsuarioRepository _usuarioRepository;
 

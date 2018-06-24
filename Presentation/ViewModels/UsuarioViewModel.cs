@@ -6,15 +6,24 @@ namespace Presentation.ViewModels
 {
     public class UsuarioViewModel
     {
+        private string _userName;
+
         [Required(ErrorMessage = "UserNameRequired")]
-        [StringLength(10, MinimumLength = 4, ErrorMessage = "UserNameInvalid")]
-        public string UserName { get; set; }
-        
+        [StringLength(10, MinimumLength = 6, ErrorMessage = "UserNameInvalidLength")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "UserNameInvalid")]
+        public string UserName
+        {
+            get => _userName.ToLower();
+            set => _userName = value;
+        }
+
         [Required(ErrorMessage = "EmailRequired")]
         [EmailAddress(ErrorMessage = "EmailInvalid")]
         public string Email { get; set; }
         
         [Required(ErrorMessage = "PasswordRequired")]
+        [MinLength(6, ErrorMessage = "PasswordInvalidLength")]
+        [RegularExpression("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z].*).*$", ErrorMessage = "PasswordInvalid")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "PasswordConfirmRequired")]
@@ -31,12 +40,13 @@ namespace Presentation.ViewModels
         [StringLength(9, ErrorMessage = "TelefoneInvalid", MinimumLength = 8)]
         public string Telefone { get; set; }
         
-        [Required(ErrorMessage = "DataNascimentoRequireed")]
-        public DateTime DataNascimento { get; set; }
+        [Required(ErrorMessage = "DataNascimentoRequired")]
+        public DateTime? DataNascimento { get; set; }
         
         [Required(ErrorMessage = "CpfCnpjRequired")]
         [IsCnpjOrCpf]
         public string CPFCNPJ { get; set; }
+        
         public DateTime? DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
     }

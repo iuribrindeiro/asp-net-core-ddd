@@ -120,8 +120,11 @@
   <data name="UserNameRequired" xml:space="preserve">
     <value>O Nome de Usuário é obrigatório</value>
   </data>
-  <data name="UserNameInvaid" xml:space="preserve">
+  <data name="UserNameInvalidLength" xml:space="preserve">
     <value>O Nome de Usuário deve conter de 4 a 10 caracteres</value>
+  </data>
+  <data name="UserNameInvalid" xml:space="preserve">
+    <value>O Nome de Usuário deve conter apenas letras</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>O Email é obrigatório</value>
@@ -131,6 +134,12 @@
   </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>A Senha é obrigatória</value>
+  </data>
+  <data name="PasswordInvlidLength" xml:space="preserve">
+    <value>A Senha precisa ter no mínimo 6 caracteres</value>
+  </data>
+  <data name="PasswordInvalid" xml:space="preserve">
+    <value>A Senha precisa conter letras, números, pelo menos 1(um) caractere menúsculo e 1(um) maiúsculo</value>
   </data>
   <data name="PasswordConfirmRequired" xml:space="preserve">
     <value>A Confirmação de Senha é obrigatória</value>

@@ -15,7 +15,7 @@ namespace Identity.Services
 
         public async Task LoginAsync(Usuario usuario)
         {
-            var result = await _signInManager.PasswordSignInAsync(usuario, usuario.PasswordHash, usuario.Lembrar, true);
+            var result = await _signInManager.PasswordSignInAsync(usuario, usuario.PasswordHash, usuario.Lembrar, lockoutOnFailure: true);
             
             if (result.RequiresTwoFactor)
                 throw new RequerAuthenticacaoProviderException();

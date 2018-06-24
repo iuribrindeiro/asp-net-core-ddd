@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using AutoMapper;
 using IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,12 +29,17 @@ namespace Presentation
                 options.DataAnnotationLocalizerProvider = (type, factory) =>
                     factory.Create(typeof(ValidationMessages));
             });
+            
             services.AddAuthentication();
+            
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory =
                     context => new UnprocessableEntityObjectResult(context.ModelState);
             });
+
+            services.AddAutoMapper();
+            
             DepedencyResolver.Resolve(services, Configuration);
         }
 

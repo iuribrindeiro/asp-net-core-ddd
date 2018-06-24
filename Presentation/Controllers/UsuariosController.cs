@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Domain.Entidades;
 using Domain.Exceptions;
+using Domain.Exceptions.Usuario;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers.Base;
@@ -13,16 +15,28 @@ namespace Presentation.Controllers
     public class UsuariosController : BaseApiController
     {
         private readonly IUsuariosService _usuariosService;
+        private readonly IMapper _mapper;
 
-        public UsuariosController(IUsuariosService usuariosService) => _usuariosService = usuariosService;
+        public UsuariosController(IUsuariosService usuariosService, IMapper mapper)
+        {
+            _usuariosService = usuariosService;
+            _mapper = mapper;
+        }
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<IActionResult> Post([FromBody]UsuarioViewModel usuario)
-        {   
-            await _usuariosService.SalvarAsync(new Usuario(), "lol");
-            
-            return CreatedAtAction(nameof(Get), new { id = 1 }, usuario);
+        public async Task<IActionResult> Post(UsuarioViewModel usuarioViewModel)
+        {
+            try
+            {
+                var usuario = _mapper.Map<UsuarioViewModel, Usuario>(usuarioViewModel);
+                await _usuariosService.SalvarAsync(usuario, usuarioViewModel.Password);
+                return CreatedAtAction(nameof(Get), new { id = usuario.Id.ToString() });
+            }
+            catch (ErroAoCriarUsuarioException e)
+            {
+                return new UnprocessableEntityObjectResult(e.Errors);
+            }
         }
 
         [HttpGet("{id}")]

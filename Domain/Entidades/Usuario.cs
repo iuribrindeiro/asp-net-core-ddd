@@ -10,8 +10,8 @@ namespace Domain.Entidades
         public string PasswordHash { get; set; }
         public bool CadastroConfirmado { get; set; }
         public bool Lembrar { get; set; }
-        public int Ddd { get; set; }
-        public int Telefone { get; set; }
+        public string Ddd { get; set; }
+        public string Telefone { get; set; }
         public DateTime DataNascimento { get; set; }
         public string CPFCNPJ { get; set; }
         public DateTime DataCadastro { get; set; }
