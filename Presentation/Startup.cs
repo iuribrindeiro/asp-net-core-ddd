@@ -1,11 +1,8 @@
-﻿using System.Globalization;
-using AutoMapper;
+﻿using AutoMapper;
 using IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Filters;
@@ -26,21 +23,23 @@ namespace Presentation
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => { options.Filters.Add<ActionFilter>(); })
-            .AddDataAnnotationsLocalization(options =>
-            {
-                options.DataAnnotationLocalizerProvider = (type, factory) =>
-                    factory.Create(typeof(ValidationMessages));
-            });
-            
+            services.AddMvc(options => options.Filters.Add<ActionFilter>())
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider =
+                        (type, factory) => factory.Create(typeof(ValidationMessages));
+                })
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ContractResolver =
+                        new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                });
             services.AddAuthentication();
-            
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory =
                     context => new UnprocessableEntityObjectResult(context.ModelState);
             });
-
             services.AddAutoMapper();
             services.ResolveDependencies(Configuration);
         }
@@ -52,7 +51,6 @@ namespace Presentation
                 app.UseDeveloperExceptionPage();
             else
                 app.UseHsts();
-
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseAuthentication();

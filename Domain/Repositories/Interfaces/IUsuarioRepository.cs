@@ -10,8 +10,7 @@ namespace Domain.Repositories.Interfaces
         void Atualizar(Usuario usuario);
         void Deletar(Guid id);
         Task<Usuario> BuscarAsync(Guid id);
-        Task<Usuario> BuscarPorNomeAsync(string nome);
-        Task<Usuario> BuscarPorLoginOuEmailAsync(Usuario usuario);
-        Task<Usuario> BuscarPorEmailAsync(string email);
+        Task<Usuario> BuscarPorNomeAsync(string normalizedUserName);
+        Task<Usuario> BuscarPorEmailAsync(string normalizedEmail);
     }
 }

@@ -11,6 +11,7 @@ namespace Data.Mappings
         {
             builder.HasIndex(u => u.Id);
             builder.Property(u => u.UserName).IsRequired();
+            builder.Property(u => u.NormalizedUserName).IsRequired();
             builder.Property(u => u.CadastroConfirmado).IsRequired();
             builder.Property(u => u.Lembrar).IsRequired();
             builder.Property(u => u.CPFCNPJ).IsRequired().HasMaxLength(14);
@@ -18,6 +19,7 @@ namespace Data.Mappings
             builder.Property(u => u.Ddd).HasMaxLength(2).IsRequired();
             builder.Property(u => u.Telefone).IsRequired().HasMaxLength(9);
             builder.Property(u => u.Email).IsRequired();
+            builder.Property(u => u.NormalizedEmail).IsRequired();
             builder.Property(u => u.PasswordHash).IsRequired();
             builder.Property(u => u.DataCadastro);
             builder.Property(u => u.DataAtualizacao);

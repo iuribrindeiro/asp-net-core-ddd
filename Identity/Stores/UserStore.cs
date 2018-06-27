@@ -40,14 +40,13 @@ namespace Identity.Stores
         public Task<string> GetNormalizedUserNameAsync(Usuario user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-
-            return Task.FromResult(user.UserName);
+            return Task.FromResult(user.NormalizedUserName);
         }
 
         public Task SetNormalizedUserNameAsync(Usuario user, string normalizedName, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            user.UserName = normalizedName;
+            user.NormalizedUserName = normalizedName;
             
             return Task.FromResult<object>(null); 
         }

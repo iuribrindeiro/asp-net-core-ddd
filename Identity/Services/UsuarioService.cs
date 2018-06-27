@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entidades;
 using Domain.Exceptions.Usuario;
 using Domain.Models;
 using Domain.Services.Interfaces;
+using Identity.Errors;
 using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Services
@@ -20,7 +22,7 @@ namespace Identity.Services
             var result = await _userManager.CreateAsync(usuario, password);
             
             if (!result.Succeeded)
-                throw new ErroAoCriarUsuarioException(result.Errors.Select(e => new ErroSalvarUsuario() { Descricao = e.Description, Codigo = e.Code}));
+                throw new DadosInvalidosUsuarioException(result.Errors.Cast<CustomIdentityError>().Select(e => new DadoInvalidoUsuario() { Mensagem = e.Description, Campo = e.Tipo != null ? e.Tipo.ToString() : e.Code}));
         }
 
         public async Task AtualizarAsync(Usuario usuario)

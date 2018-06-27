@@ -1,5 +1,7 @@
 ﻿using System;
 using Domain.Entidades;
+using Identity.Errors;
+using Identity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,7 +29,7 @@ namespace Identity.DependencyResolver
 
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
                 options.User.RequireUniqueEmail = true;
-            }).AddDefaultTokenProviders();
+            }).AddDefaultTokenProviders().AddErrorDescriber<CustomIdentityErrorDescriber>();
         }
     }
 }

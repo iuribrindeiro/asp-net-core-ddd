@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entidades;
@@ -33,20 +36,28 @@ namespace Presentation.Controllers
                 await _usuariosService.SalvarAsync(usuario, usuarioViewModel.Password);
                 return CreatedAtAction(nameof(Get), new { id = usuario.Id.ToString() });
             }
-            catch (ErroAoCriarUsuarioException e)
+            catch (DadosInvalidosUsuarioException ex)
             {
-                return new UnprocessableEntityObjectResult(e.Errors);
+                var erros = new Dictionary<string, string[]>(); 
+                ex.Errors.ToList().ForEach(e =>
+                {
+                    if (erros.Keys.Contains(e.Campo))
+                        erros[e.Campo].ToList().Add(e.Mensagem);
+                    else
+                        erros[e.Campo] = new[] {e.Mensagem};
+                });
+                return new UnprocessableEntityObjectResult(erros);
             }
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(200, Type = typeof(Usuario))]
+        [ProducesResponseType(200, Type = typeof(UsuarioViewModel))]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> GetById(string id)
         {
             try
             {
-                return new OkObjectResult((await _usuariosService.BuscarAsync(id)));
+                return new OkObjectResult((_mapper.Map<Usuario, UsuarioViewModel>(await _usuariosService.BuscarAsync(id))));
             }
             catch (EntidadeNaoEncontradaException)
             {

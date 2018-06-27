@@ -9,6 +9,8 @@ namespace Presentation.Profiles
         public UsuarioProfile()
         {
             CreateMap<UsuarioViewModel, Usuario>();
+            CreateMap<Usuario, UsuarioViewModel>()
+                .ForMember(uvm => uvm.Password, m => m.UseValue<string>(null));
         }
     }
 }

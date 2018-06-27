@@ -78,11 +78,11 @@ namespace Data.Repositories
             }
         }
 
-        public async Task<Usuario> BuscarPorNomeAsync(string nome)
+        public async Task<Usuario> BuscarPorNomeAsync(string normalizedName)
         {
             try
             {
-                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.UserName == nome);
+                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
                 if (usuario == null)
                     throw new EntidadeNaoEncontradaException();
 
@@ -98,33 +98,11 @@ namespace Data.Repositories
             }
         }
 
-        public async Task<Usuario> BuscarPorLoginOuEmailAsync(Usuario user)
+        public async Task<Usuario> BuscarPorEmailAsync(string normalizedEmail)
         {
             try
             {
-                var usuario = await _applicationContext.Set<Usuario>()
-                    .FirstOrDefaultAsync(u => u.UserName == user.UserName || u.Email == user.Email);
-
-                if (usuario == null)
-                    throw new EntidadeNaoEncontradaException();
-
-                return usuario;
-            }
-            catch (EntidadeNaoEncontradaException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoBuscarException(e);
-            }
-        }
-
-        public async Task<Usuario> BuscarPorEmailAsync(string email)
-        {
-            try
-            {
-                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
+                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
                 
                 if (usuario == null)
                     throw new EntidadeNaoEncontradaException();

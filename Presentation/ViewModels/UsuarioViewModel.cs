@@ -6,16 +6,10 @@ namespace Presentation.ViewModels
 {
     public class UsuarioViewModel
     {
-        private string _userName;
-
         [Required(ErrorMessage = "UserNameRequired")]
         [MinLength(6, ErrorMessage = "UserNameInvalidLength")]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "UserNameInvalid")]
-        public string UserName
-        {
-            get => _userName.ToLower();
-            set => _userName = value;
-        }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "EmailRequired")]
         [EmailAddress(ErrorMessage = "EmailInvalid")]
@@ -27,8 +21,10 @@ namespace Presentation.ViewModels
         public string Password { get; set; }
 
         [Required(ErrorMessage = "PasswordConfirmRequired")]
-        [Compare("Password", ErrorMessage = "PasswordConirmInvalid")]
+        [Compare("Password", ErrorMessage = "PasswordConfirmCompare")]
         public string PasswordConfirm { get; set; }
+
+        public bool CadastroConfirmado { get; set; }
         
         public bool Lembrar { get; set; }
         

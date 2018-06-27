@@ -45,12 +45,12 @@ namespace Identity.Stores
 
         public Task<string> GetNormalizedEmailAsync(Usuario user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.Email);
+            return Task.FromResult(user.NormalizedEmail);
         }
 
         public Task SetNormalizedEmailAsync(Usuario user, string normalizedEmail, CancellationToken cancellationToken)
         {
-            user.Email = normalizedEmail;
+            user.NormalizedEmail = normalizedEmail;
 
             return Task.CompletedTask;
         }
