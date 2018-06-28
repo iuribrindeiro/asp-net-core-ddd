@@ -7,8 +7,18 @@ namespace Domain.Exceptions.Base
         private const string DefaultMessage =
             "Ocorreu um erro ao executar a operação. Não se preocupe, nossa equipe já está analisando o problema e logo será resolvido";
 
-        public DefaultException(string customMessage) : base(customMessage){}
+        private const string DefaultMessageMultipleErrors = 
+            "Ocorreram erros ao executar a operação. Não se preocupe, nossa equipe já está analisando o problema e logo será resolvido";
 
-        public DefaultException(string customMessage, Exception exception) : base(customMessage, exception){}
+        public string[] Errors { get; }
+
+        public DefaultException(string customMessage = DefaultMessage) : base(customMessage){}
+
+        public DefaultException(string[] errors, string customMesage = DefaultMessageMultipleErrors) : base(customMesage)
+        {
+            Errors = errors;
+        }
+
+        public DefaultException(Exception exception, string customMessage = DefaultMessage) : base(customMessage, exception){}
     }
 }

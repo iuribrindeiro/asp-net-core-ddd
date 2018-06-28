@@ -1,9 +1,8 @@
 ﻿namespace Domain.Models
 {
-    public class DadoInvalidoUsuario
+    public class DadoInvalido
     {
-        public string Campo { get; set; }
-
+        public string Nome { get; set; }
         public string Mensagem { get; set; }
     }
 }

@@ -16,107 +16,49 @@ namespace Data.Repositories
         
         public async Task SalvarAsync(Usuario usuario)
         {
-            try
-            {
-                await _applicationContext.Set<Usuario>().AddAsync(usuario);
-            }
-            catch (Exception exception)
-            {
-                throw new ErroAoSalvarExcption(exception);
-            }
+            await _applicationContext.Set<Usuario>().AddAsync(usuario);
         }
 
         public void Atualizar(Usuario usuario)
         {
-            try
-            {
-                _applicationContext.Set<Usuario>().Update(usuario);
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoAtualizarException(e);
-            }
+            _applicationContext.Set<Usuario>().Update(usuario);
         }
 
         public void Deletar(Guid id)
         {
-            try
-            {
-                var usuario = _applicationContext.Set<Usuario>().Find(id);
-                if (usuario == null)
-                    throw new EntidadeNaoEncontradaException();
+            var usuario = _applicationContext.Set<Usuario>().Find(id);
+            if (usuario == null)
+                throw new EntidadeNaoEncontradaException();
 
-                _applicationContext.Set<Usuario>().Remove(usuario);
-            }
-            catch (EntidadeNaoEncontradaException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoDeletarException(e);
-            }
+            _applicationContext.Set<Usuario>().Remove(usuario);
         }
 
         public async Task<Usuario> BuscarAsync(Guid id)
         {
-            try
-            {
-                var usuario = await _applicationContext.Set<Usuario>().FindAsync(id);
-                if (usuario == null)
-                    throw new EntidadeNaoEncontradaException();
+            var usuario = await _applicationContext.Set<Usuario>().FindAsync(id);
+            if (usuario == null)
+                throw new EntidadeNaoEncontradaException();
 
-                return usuario;
-            }
-            catch (EntidadeNaoEncontradaException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoBuscarException(e);
-            }
+            return usuario;
         }
 
         public async Task<Usuario> BuscarPorNomeAsync(string normalizedName)
         {
-            try
-            {
-                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
-                if (usuario == null)
-                    throw new EntidadeNaoEncontradaException();
+            var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
+            if (usuario == null)
+                throw new EntidadeNaoEncontradaException();
 
-                return usuario;
-            }
-            catch (EntidadeNaoEncontradaException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoBuscarException(e);
-            }
+            return usuario;
         }
 
         public async Task<Usuario> BuscarPorEmailAsync(string normalizedEmail)
         {
-            try
-            {
-                var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
+            var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
                 
-                if (usuario == null)
-                    throw new EntidadeNaoEncontradaException();
+            if (usuario == null)
+                throw new EntidadeNaoEncontradaException();
 
-                return usuario;
-            }
-            catch (EntidadeNaoEncontradaException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new ErroAoBuscarException(e);
-            }
+            return usuario;
         }
     }
 }

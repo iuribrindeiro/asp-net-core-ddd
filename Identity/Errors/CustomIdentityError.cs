@@ -4,6 +4,6 @@ namespace Identity.Errors
 {
     public class CustomIdentityError : IdentityError
     {
-        public TipoIdentityErrorEnum ?Tipo { get; set; }
+        public TipoIdentityErrorEnum Tipo { get; set; }
     }
 }

@@ -54,31 +54,15 @@ namespace Identity.Stores
         public async Task<IdentityResult> CreateAsync(Usuario user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-
-            try
-            {
-                await _usuarioRepository.SalvarAsync(user);
-                return IdentityResult.Success;
-            }
-            catch (ErroAoSalvarExcption excption)
-            {
-                return IdentityResult.Failed(new IdentityError { Description = excption.Message });
-            }
+            await _usuarioRepository.SalvarAsync(user);
+            return IdentityResult.Success;
         }
 
         public Task<IdentityResult> UpdateAsync(Usuario user, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
-            try
-            {
-                _usuarioRepository.Atualizar(user);
-                return Task.FromResult(IdentityResult.Success);
-            }
-            catch (ErroAoAtualizarException exception)
-            {
-                return Task.FromResult(IdentityResult.Failed(new IdentityError {Description = exception.Message}));
-            }
+            _usuarioRepository.Atualizar(user);
+            return Task.FromResult(IdentityResult.Success);
         }
 
         public Task<IdentityResult> DeleteAsync(Usuario user, CancellationToken cancellationToken)

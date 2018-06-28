@@ -5,6 +5,13 @@
         Email,
         UserName,
         Password,
-        Permissao
+        Permissao,
+        DefaultErro,
+        ConcurrencyFailure,
+        InvalidToken,
+        UserAlreadyHasPassword,
+        UserLockoutNotEnabled,
+        UserAlreadyInRole,
+        UserNotInRole
     }
 }
