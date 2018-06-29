@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Linq;
 
 namespace Domain.Exceptions.Base
 {
     public abstract class DefaultException : Exception
     {
-        private const string DefaultMessage =
+        public const string DefaultMessage =
             "Ocorreu um erro ao executar a operação. Não se preocupe, nossa equipe já está analisando o problema e logo será resolvido";
 
-        private const string DefaultMessageMultipleErrors = 
+        public const string DefaultMessageMultipleErrors = 
             "Ocorreram erros ao executar a operação. Não se preocupe, nossa equipe já está analisando o problema e logo será resolvido";
 
         public string[] Errors { get; }

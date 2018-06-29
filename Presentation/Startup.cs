@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Filters;
 using Presentation.Resources;
+using UnprocessableEntityObjectResult = Presentation.ObjectResults.UnprocessableEntityObjectResult;
 
 namespace Presentation
 {
@@ -23,7 +24,11 @@ namespace Presentation
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.Filters.Add<ActionFilter>())
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add<ActionFilter>();
+                    options.Filters.Add<ExceptionFilter>();
+                })
                 .AddDataAnnotationsLocalization(options =>
                 {
                     options.DataAnnotationLocalizerProvider =
@@ -34,12 +39,15 @@ namespace Presentation
                     options.SerializerSettings.ContractResolver =
                         new Newtonsoft.Json.Serialization.DefaultContractResolver();
                 });
+            
             services.AddAuthentication();
+            
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory =
                     context => new UnprocessableEntityObjectResult(context.ModelState);
             });
+            
             services.AddAutoMapper();
             services.ResolveDependencies(Configuration);
         }
