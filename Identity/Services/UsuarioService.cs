@@ -35,7 +35,7 @@ namespace Identity.Services
                 return;
 
             if (ErrosDeValidacao(result.Errors))
-                throw new EntidadeNaoProcessavelException(result.Errors.Cast<CustomIdentityError>().Select(e =>
+                throw new DadosInvalidosUsuarioException(result.Errors.Cast<CustomIdentityError>().Select(e =>
                     new DadoInvalido()
                     {
                         Mensagem = e.Description,

@@ -2,6 +2,7 @@
 using System.Net;
 using Domain.Exceptions;
 using Domain.Exceptions.Base;
+using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
@@ -11,9 +12,9 @@ namespace Presentation.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {
-        //private readonly ILogger _logger;
+        private readonly ILoggerService _logger;
 
-        //public ExceptionFilter(ILogger logger) => _logger = logger;
+        public ExceptionFilter(ILoggerService logger) => _logger = logger;
 
         public void OnException(ExceptionContext context)
         {
@@ -25,12 +26,13 @@ namespace Presentation.Filters
                 : DefaultException.DefaultMessage;
             response.ContentType = "application/json";
 
-            if (exceptionType == typeof(EntidadeNaoEncontradaException))
+            if (exceptionType.IsSubclassOf(typeof(EntidadeNaoEncontradaException)) || exceptionType == typeof(EntidadeNaoEncontradaException))
             {
                 response.WriteAsync(JsonConvert.SerializeObject(new DefaultResponse() {Message = message}));
                 response.StatusCode = (int) HttpStatusCode.NotFound;
+                _logger.LogInfo(context.Exception, message);
             }
-            else if (exceptionType == typeof(EntidadeNaoProcessavelException))
+            else if (exceptionType.IsSubclassOf(typeof(EntidadeNaoProcessavelException)) || exceptionType == typeof(EntidadeNaoEncontradaException))
             {
                 var exception = (EntidadeNaoProcessavelException) context.Exception;
                 response.StatusCode = (int) HttpStatusCode.UnprocessableEntity;
@@ -43,11 +45,13 @@ namespace Presentation.Filters
                                 e => exception.Errors.Where(err => err.Nome == e.Nome).Select(err => err.Mensagem)
                                     .ToArray())
                         }));
+                _logger.LogInfo(exception, "{message}; Errors:{Errors}", message, exception.Errors.Select(e => e.Mensagem));
             }
             else
             {
                 response.StatusCode = (int) HttpStatusCode.BadRequest;
                 response.WriteAsync(JsonConvert.SerializeObject(new DefaultResponse() {Message = message}));
+                _logger.LogError(context.Exception, message);
             }
         }
     }

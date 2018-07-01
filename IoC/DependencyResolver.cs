@@ -11,6 +11,7 @@ using Domain.UnitOfWork.Interfaces;
 using Identity.DependencyResolver;
 using Identity.Services;
 using Identity.Stores;
+using Logger.DependencyResolver;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace IoC
         {
             services.AddCustomIdentity();
             services.AddMediatR();
+            services.AddCustomLoggerConfig(configuration);
             
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("UsersConnectionString")))
