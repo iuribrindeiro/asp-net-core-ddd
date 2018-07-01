@@ -83,11 +83,7 @@ namespace Identity.Stores
         public async Task<Usuario> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
-            if (!Guid.TryParse(userId, out var idGuid))
-                throw new IdInformadoInvalidoException(userId);
-                
-            return await _usuarioRepository.BuscarAsync(idGuid);
+            return await _usuarioRepository.BuscarAsync(Guid.Parse(userId));
         }
 
         public async Task<Usuario> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)

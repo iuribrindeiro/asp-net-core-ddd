@@ -21,21 +21,21 @@ namespace Data.Repositories
 
         public void Atualizar(Usuario usuario)
         {
-            _applicationContext.Set<Usuario>().Update(usuario);
+            _applicationContext.Update(usuario);
         }
 
         public void Deletar(Guid id)
         {
-            var usuario = _applicationContext.Set<Usuario>().Find(id);
+            var usuario = _applicationContext.Usuarios.Find(id);
             if (usuario == null)
                 throw new EntidadeNaoEncontradaException();
 
-            _applicationContext.Set<Usuario>().Remove(usuario);
+            _applicationContext.Remove(usuario);
         }
 
         public async Task<Usuario> BuscarAsync(Guid id)
         {
-            var usuario = await _applicationContext.Set<Usuario>().FindAsync(id);
+            var usuario = await _applicationContext.Usuarios.FindAsync(id);
             if (usuario == null)
                 throw new EntidadeNaoEncontradaException();
 
@@ -44,7 +44,7 @@ namespace Data.Repositories
 
         public async Task<Usuario> BuscarPorNomeAsync(string normalizedName)
         {
-            var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
+            var usuario = await _applicationContext.Usuarios.FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
             if (usuario == null)
                 throw new EntidadeNaoEncontradaException();
 
@@ -53,7 +53,7 @@ namespace Data.Repositories
 
         public async Task<Usuario> BuscarPorEmailAsync(string normalizedEmail)
         {
-            var usuario = await _applicationContext.Set<Usuario>().FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
+            var usuario = await _applicationContext.Usuarios.FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
                 
             if (usuario == null)
                 throw new EntidadeNaoEncontradaException();

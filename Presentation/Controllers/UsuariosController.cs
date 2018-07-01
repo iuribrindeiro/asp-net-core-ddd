@@ -1,8 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entidades;
+using Domain.Exceptions.Usuario;
 using Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Presentation.Attributes.ModelAttributes;
 using Presentation.Controllers.Base;
 using Presentation.ViewModels;
 
@@ -21,20 +25,33 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(201)]
-        public async Task<IActionResult> Post(UsuarioViewModel usuarioViewModel)
+        [ProducesResponseType(201, Type = typeof(EditUsuarioViewModel))]
+        [ProducesResponseType(422)]
+        public async Task<IActionResult> Post(NovoUsuarioViewModel novoUsuarioViewModel)
         {
-            var usuario = _mapper.Map<UsuarioViewModel, Usuario>(usuarioViewModel);
-            await _usuariosService.SalvarAsync(usuario, usuarioViewModel.Password);
-            return CreatedAtAction(nameof(Get), new {id = usuario.Id.ToString()});
+            var usuario = _mapper.Map<NovoUsuarioViewModel, Usuario>(novoUsuarioViewModel);
+            await _usuariosService.SalvarAsync(usuario, novoUsuarioViewModel.Password);
+            return CreatedAtAction(nameof(GetById), new {id = usuario.Id.ToString()}, _mapper.Map<Usuario, EditUsuarioViewModel>(usuario));
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(200, Type = typeof(UsuarioViewModel))]
+        [HttpPut("{id:guid}")]
+        [ProducesResponseType(200, Type = typeof(EditUsuarioViewModel))]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(422)]
+        public async Task<IActionResult> Put(EditUsuarioViewModel editUsuarioViewModel, string id)
+        {
+            var usuario = _mapper.Map<EditUsuarioViewModel, Usuario>(editUsuarioViewModel);
+            usuario.Id = Guid.Parse(id);
+            await _usuariosService.AtualizarAsync(usuario);
+            return Ok();
+        }
+
+        [HttpGet("{id:guid}")]
+        [ProducesResponseType(200, Type = typeof(EditUsuarioViewModel))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetById(string id)
         {
-            return new OkObjectResult((_mapper.Map<Usuario, UsuarioViewModel>(await _usuariosService.BuscarAsync(id))));
+            return new OkObjectResult((_mapper.Map<Usuario, EditUsuarioViewModel>(await _usuariosService.BuscarAsync(id))));
         }
 
         [HttpGet]
