@@ -4,18 +4,19 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Presentation.Filters
 {
-    public class ActionFilter : IActionFilter
+    public class ActionFilter : IResultFilter
     {
         private readonly IMediator _mediator;
 
-        public ActionFilter(IMediator mediator) => _mediator = mediator;
+        public ActionFilter(IMediator mediator) => _mediator = mediator; 
+            
 
-        public void OnActionExecuting(ActionExecutingContext context)
+        public void OnResultExecuting(ResultExecutingContext context)
         {
-            //nothing to do...
+            //nothing to do..
         }
 
-        public void OnActionExecuted(ActionExecutedContext context) 
+        public void OnResultExecuted(ResultExecutedContext context)
             => _mediator.Publish(new CommitEvent());
     }
 }

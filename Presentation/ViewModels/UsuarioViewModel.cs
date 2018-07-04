@@ -1,11 +1,28 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Presentation.Attributes.ModelAttributes;
 
 namespace Presentation.ViewModels
 {
-    public class EditUsuarioViewModel
+    public class UsuarioViewModel
     {
+        public Guid ?Id { get; set; }
+        
+        [Required(ErrorMessage = "UserNameRequired")]
+        [MinLength(6, ErrorMessage = "UserNameInvalidLength")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "UserNameInvalid")]
+        public string UserName { get; set; }
+        
+        [Required(ErrorMessage = "PasswordRequired")]
+        [MinLength(6, ErrorMessage = "PasswordInvalidLength")]
+        [RegularExpression("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z].*).*$", ErrorMessage = "PasswordInvalid")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "PasswordConfirmRequired")]
+        [Compare("Password", ErrorMessage = "PasswordConfirmCompare")]
+        public string PasswordConfirm { get; set; }
+        
         [Required(ErrorMessage = "EmailRequired")]
         [EmailAddress(ErrorMessage = "EmailInvalid")]
         public string Email { get; set; }

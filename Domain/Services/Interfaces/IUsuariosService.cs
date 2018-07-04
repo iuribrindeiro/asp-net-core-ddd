@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain.DTO;
 using Domain.Entidades;
 
 namespace Domain.Services.Interfaces
@@ -10,5 +11,6 @@ namespace Domain.Services.Interfaces
         Task AtualizarAsync(Usuario usuario);
         Task DeletarAsync(Guid id);
         Task<Usuario> BuscarAsync(string id);
+        UsuariosPaginadosDTO BuscarUsuarios(string valueOfAnyTextField, int pageSize = 10, int pageIndex = 1);
     }
 }

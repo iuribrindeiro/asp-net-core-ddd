@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.DTO;
 using Domain.Entidades;
 using Domain.Exceptions;
 using Domain.Exceptions.Base;
@@ -9,8 +11,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Stores
 {
-    public partial class UserStore : IUserStore<Usuario>
+    public partial class UserStore : IUserStore<Usuario>, IQueryableUserStore<Usuario>
     {
+        public IQueryable<Usuario> Users => _usuarioRepository;
+        
         private readonly IUsuarioRepository _usuarioRepository;
 
         public UserStore(IUsuarioRepository usuarioRepository) => _usuarioRepository = usuarioRepository;
@@ -99,7 +103,7 @@ namespace Identity.Stores
                 return null;
             }
         }
-        
+
         public void Dispose()
         {
         }

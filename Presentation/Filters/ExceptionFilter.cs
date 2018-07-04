@@ -28,8 +28,8 @@ namespace Presentation.Filters
 
             if (exceptionType.IsSubclassOf(typeof(EntidadeNaoEncontradaException)) || exceptionType == typeof(EntidadeNaoEncontradaException))
             {
-                response.WriteAsync(JsonConvert.SerializeObject(new DefaultResponse() {Message = message}));
                 response.StatusCode = (int) HttpStatusCode.NotFound;
+                response.WriteAsync(JsonConvert.SerializeObject(new DefaultResponse() {Message = message}));
                 _logger.LogInfo(context.Exception, message);
             }
             else if (exceptionType.IsSubclassOf(typeof(EntidadeNaoProcessavelException)) || exceptionType == typeof(EntidadeNaoEncontradaException))
@@ -51,7 +51,7 @@ namespace Presentation.Filters
             {
                 response.StatusCode = (int) HttpStatusCode.BadRequest;
                 response.WriteAsync(JsonConvert.SerializeObject(new DefaultResponse() {Message = message}));
-                _logger.LogError(context.Exception, message);
+                _logger.LogError(context.Exception, context.Exception.Message);
             }
         }
     }
