@@ -26,7 +26,7 @@ namespace Presentation.Controllers
         [ProducesResponseType(201, Type = typeof(UsuarioViewModel))]
         [ProducesResponseType(422)]
         public async Task<IActionResult> Post(UsuarioViewModel novoUsuarioViewModel)
-        {
+        {   
             var usuario = _mapper.Map<UsuarioViewModel, Usuario>(novoUsuarioViewModel);
             await _usuariosService.SalvarAsync(usuario, novoUsuarioViewModel.Password);
             return CreatedAtAction(nameof(GetById), new {id = usuario.Id.ToString()},
@@ -59,5 +59,14 @@ namespace Presentation.Controllers
         [ProducesResponseType(404)]
         public IActionResult Get(string search, int size = 10, int page = 1)
             => new OkObjectResult((_mapper.Map<UsuariosPaginadosDTO, UsuariosPaginadosViewModel>(_usuariosService.BuscarUsuarios(search, size, page))));
+
+        [HttpGet("/confirm-email")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> ConfirmEmail(string code, string idUsaurio)
+        {
+            await _usuariosService.ConfirmUserEmailAsync(code, idUsaurio);
+            return Ok();
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace Domain.Services.Interfaces
         Task DeletarAsync(Guid id);
         Task<Usuario> BuscarAsync(string id);
         UsuariosPaginadosDTO BuscarUsuarios(string valueOfAnyTextField, int pageSize = 10, int pageIndex = 1);
+        Task ConfirmUserEmailAsync(string code, string idUsuario);
     }
 }

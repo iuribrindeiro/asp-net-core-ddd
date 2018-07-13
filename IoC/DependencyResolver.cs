@@ -1,4 +1,5 @@
 ﻿using System;
+using Bus.DependencyResolver;
 using Bus.Events;
 using Bus.Handlers;
 using Data.Context;
@@ -8,6 +9,7 @@ using Domain.Entidades;
 using Domain.Repositories.Interfaces;
 using Domain.Services.Interfaces;
 using Domain.UnitOfWork.Interfaces;
+using Email.DependencyResolver;
 using Identity.DependencyResolver;
 using Identity.Services;
 using Identity.Stores;
@@ -27,15 +29,14 @@ namespace IoC
             services.AddCustomIdentity();
             services.AddMediatR();
             services.AddCustomLoggerConfig(configuration);
-            
+            services.AddEmailConfig(configuration);
+            services.AddHandlers(configuration);
+
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("UsersConnectionString")))
                 .AddTransient<IUserStore<Usuario>, UserStore>()
                 .AddScoped<IUnitOfWork, UnitOfWork>()
-                .AddScoped<IUsuarioRepository, UsuarioRepository>()
-                .AddTransient<IUsuariosService, UsuarioService>()
-                .AddTransient<IAuthenticationService, AuthenticationService>()
-                .AddTransient<INotificationHandler<CommitEvent>, CommitHandler>();
+                .AddScoped<IUsuarioRepository, UsuarioRepository>();
         }
     }
 }

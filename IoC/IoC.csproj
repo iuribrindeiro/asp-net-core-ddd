@@ -6,6 +6,7 @@
     <ProjectReference Include="..\Bus\Bus.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\Identity\Identity.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
   </ItemGroup>

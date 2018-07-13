@@ -1,7 +1,6 @@
-﻿using Identity.Errors;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Identity.Services
+namespace Identity.Errors
 {
     public class CustomIdentityErrorDescriber : IdentityErrorDescriber
     {

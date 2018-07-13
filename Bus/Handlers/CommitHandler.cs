@@ -6,13 +6,13 @@ using MediatR;
 
 namespace Bus.Handlers
 {
-    public class CommitHandler : INotificationHandler<CommitEvent>
+    public class CommitHandler : AsyncRequestHandler<CommitEvent>
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public CommitHandler(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
-        public Task Handle(CommitEvent notification, CancellationToken cancellationToken)
+        protected override Task Handle(CommitEvent request, CancellationToken cancellationToken)
         {
             _unitOfWork.Commit();
             return Task.CompletedTask;

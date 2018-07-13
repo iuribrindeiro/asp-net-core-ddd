@@ -17,6 +17,6 @@ namespace Presentation.Filters
         }
 
         public void OnResultExecuted(ResultExecutedContext context)
-            => _mediator.Publish(new CommitEvent());
+            => _mediator.Send(new CommitEvent());
     }
 }

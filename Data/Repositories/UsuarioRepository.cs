@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -38,7 +37,7 @@ namespace Data.Repositories
         {
             var usuario = _applicationContext.Usuarios.Find(id);
             if (usuario == null)
-                throw new EntidadeNaoEncontradaException();
+                throw new EntidadeNaoEncontradaException(id.ToString(), typeof(Usuario).ToString());
 
             _applicationContext.Usuarios.Remove(usuario);
         }
@@ -47,7 +46,7 @@ namespace Data.Repositories
         {
             var usuario = await _applicationContext.Usuarios.FindAsync(id);
             if (usuario == null)
-                throw new EntidadeNaoEncontradaException();
+                throw new EntidadeNaoEncontradaException(id.ToString(), typeof(Usuario).ToString());
 
             return usuario;
         }
@@ -56,7 +55,7 @@ namespace Data.Repositories
         {
             var usuario = await _applicationContext.Usuarios.FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedName);
             if (usuario == null)
-                throw new EntidadeNaoEncontradaException();
+                throw new EntidadeNaoEncontradaException(typeof(Usuario).ToString());
 
             return usuario;
         }
@@ -66,7 +65,7 @@ namespace Data.Repositories
             var usuario = await _applicationContext.Usuarios.FirstOrDefaultAsync(u => u.NormalizedEmail == normalizedEmail);
                 
             if (usuario == null)
-                throw new EntidadeNaoEncontradaException();
+                throw new EntidadeNaoEncontradaException(typeof(Usuario).ToString());
 
             return usuario;
         }

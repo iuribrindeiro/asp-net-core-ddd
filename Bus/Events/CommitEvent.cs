@@ -2,7 +2,7 @@
 
 namespace Bus.Events
 {
-    public class CommitEvent : INotification
+    public class CommitEvent : IRequest
     {
     }
 }

@@ -3,9 +3,15 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bus\Bus.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MediatR, Version=5.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Users\iurib\.nuget\packages\mediatr\5.0.1\lib\netstandard2.0\MediatR.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

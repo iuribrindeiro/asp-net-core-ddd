@@ -13,5 +13,7 @@ Bus/obj
 Bus/bin
 Logger/obj
 Logger/bin
+Email/obj
+Email/bin
 .vs/
 .vscode/
