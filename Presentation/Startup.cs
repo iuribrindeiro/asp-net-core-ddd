@@ -40,8 +40,6 @@ namespace Presentation
                         new Newtonsoft.Json.Serialization.DefaultContractResolver();
                 });
             
-            services.AddAuthentication();
-            
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory =
@@ -59,9 +57,9 @@ namespace Presentation
                 app.UseDeveloperExceptionPage();
             else
                 app.UseHsts();
+                
             app.UseHttpsRedirection();
             app.UseMvc();
-            app.UseAuthentication();
         }
     }
 }
