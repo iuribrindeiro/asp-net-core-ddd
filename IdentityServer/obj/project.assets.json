@@ -2109,6 +2109,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -6714,10 +6724,16 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Domain >= 1.0.0",
       "IdentityServer4.AspNetIdentity >= 2.1.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
@@ -6751,7 +6767,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projetos\\AuthenticationUserApi\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Projetos\\AuthenticationUserApi\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

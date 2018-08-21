@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data.Mappings;
 using Domain.Entidades;
+using Domain.Entidades.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
@@ -35,7 +36,7 @@ namespace Data.Context
         
         private void AddDateTimes()
         {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is Usuario && (x.State == EntityState.Added || x.State == EntityState.Modified)).ToList();
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State == EntityState.Added || x.State == EntityState.Modified)).ToList();
 
             entities.ForEach(e =>
             {

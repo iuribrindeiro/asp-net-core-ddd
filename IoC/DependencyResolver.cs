@@ -1,7 +1,4 @@
 ﻿using System;
-using Bus.DependencyResolver;
-using Bus.Events;
-using Bus.Handlers;
 using Data.Context;
 using Data.Repositories;
 using Data.UnitOfWor;
@@ -14,7 +11,6 @@ using Identity.DependencyResolver;
 using Identity.Services;
 using Identity.Stores;
 using Logger.DependencyResolver;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,11 +22,9 @@ namespace IoC
     {
         public static void ResolveDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddCustomIdentity();
-            services.AddMediatR();
+            services.AddCustomIdentity(configuration);
             services.AddCustomLoggerConfig(configuration);
             services.AddEmailConfig(configuration);
-            services.AddHandlers(configuration);
 
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("UsersConnectionString")))

@@ -1,10 +1,10 @@
 ﻿using System;
+using Domain.Entidades.Base;
 
 namespace Domain.Entidades
 {
-    public class Usuario
+    public class Usuario : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string UserName { get; set; }
         public string NormalizedUserName { get; set; }
         public string Email { get; set; }
@@ -16,8 +16,6 @@ namespace Domain.Entidades
         public string Telefone { get; set; }
         public DateTime DataNascimento { get; set; }
         public string CPFCNPJ { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime? DataAtualizacao { get; set; }
         public virtual bool EhPessoaFisica
         {
             get => CPFCNPJ?.Length > 11;

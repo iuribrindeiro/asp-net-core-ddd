@@ -1,4 +1,5 @@
-﻿using Data.Context;
+﻿using System.Threading.Tasks;
+using Data.Context;
 using Domain.UnitOfWork.Interfaces;
 
 namespace Data.UnitOfWor
@@ -9,9 +10,9 @@ namespace Data.UnitOfWor
 
         public UnitOfWork(ApplicationContext applicationContext) => _applicationContext = applicationContext;
 
-        public void Commit()
+        public async Task CommitAsync()
         {
-            _applicationContext.SaveChanges();
+            await _applicationContext.SaveChangesAsync();
         }
     }
 }

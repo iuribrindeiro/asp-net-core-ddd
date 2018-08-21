@@ -1,0 +1,14 @@
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Bus.deps.json
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Bus.dll
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Bus.pdb
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Domain.dll
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Domain.pdb
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.csprojAssemblyReference.cache
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.csproj.CoreCompileInputs.cache
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.AssemblyInfoInputs.cache
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.AssemblyInfo.cs
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.csproj.CopyComplete
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.dll
+C:\Projetos\AuthenticationUserApi\Bus\obj\Debug\netcoreapp2.1\Bus.pdb
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Projetos\AuthenticationUserApi\Bus\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Configuration.Abstractions.xml

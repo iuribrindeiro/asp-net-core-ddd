@@ -56,7 +56,6 @@ namespace Presentation.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Usuario))]
-        [ProducesResponseType(404)]
         public IActionResult Get(string search, int size = 10, int page = 1)
             => new OkObjectResult((_mapper.Map<UsuariosPaginadosDTO, UsuariosPaginadosViewModel>(_usuariosService.BuscarUsuarios(search, size, page))));
 

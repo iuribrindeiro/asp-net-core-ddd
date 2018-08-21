@@ -9,7 +9,6 @@ namespace Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.HasIndex(u => u.Id);
             builder.Property(u => u.UserName).IsRequired();
             builder.Property(u => u.NormalizedUserName).IsRequired();
             builder.Property(u => u.CadastroConfirmado).IsRequired();
@@ -21,8 +20,6 @@ namespace Data.Mappings
             builder.Property(u => u.Email).IsRequired();
             builder.Property(u => u.NormalizedEmail).IsRequired();
             builder.Property(u => u.PasswordHash).IsRequired();
-            builder.Property(u => u.DataCadastro);
-            builder.Property(u => u.DataAtualizacao);
         }
     }
 }

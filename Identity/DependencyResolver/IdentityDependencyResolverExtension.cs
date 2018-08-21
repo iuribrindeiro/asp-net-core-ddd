@@ -4,21 +4,26 @@ using Domain.Services.Interfaces;
 using Identity.Errors;
 using Identity.Services;
 using Identity.Services.Delegators;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.DependencyResolver
 {
     public static class IdentityDependencyResolverExtension
     {
-        public static void AddCustomIdentity(this IServiceCollection services)
+        public static void AddCustomIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             services
+                .AddTransient<IEnviadorTokenCadastroService>(s => {
+                    var mailService = s.GetService<IMailSenderService>();
+                    var userManager = s.GetService<UserManager<Usuario>>();
+                    return new EnviadorTokenCadastroEmailService(mailService, userManager, configuration);
+                })
                 .AddTransient<IUsuariosService>(s =>
                 {
                     var userManager = s.GetService<UserManager<Usuario>>();
-                    return new UsuarioServiceDelegator(new UsuarioService(userManager), userManager, s.GetService<IMediator>());
+                    return new UsuarioServiceDecorator(new UsuarioService(userManager), s.GetService<IEnviadorTokenCadastroService>());
                 })
                 .AddTransient<IAuthenticationService, AuthenticationService>();
             

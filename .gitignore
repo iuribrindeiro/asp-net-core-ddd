@@ -9,11 +9,12 @@ IoC/bin
 IoC/obj
 Presentation/obj
 Presentation/bin
-Bus/obj
-Bus/bin
 Logger/obj
 Logger/bin
 Email/obj
+Email/bin
+IdentityServer/obj
+IdentityServer/bin
 Email/bin
 .vs/
 .vscode/

@@ -1,15 +1,13 @@
-﻿using Bus.Events;
-using MediatR;
+﻿using Domain.UnitOfWork.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Presentation.Filters
 {
     public class ActionFilter : IResultFilter
     {
-        private readonly IMediator _mediator;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ActionFilter(IMediator mediator) => _mediator = mediator; 
-            
+        public ActionFilter(IUnitOfWork unitOfWork) => this._unitOfWork = unitOfWork;
 
         public void OnResultExecuting(ResultExecutingContext context)
         {
@@ -17,6 +15,6 @@ namespace Presentation.Filters
         }
 
         public void OnResultExecuted(ResultExecutedContext context)
-            => _mediator.Send(new CommitEvent());
+            => _unitOfWork.CommitAsync();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Domain.Services.Interfaces;
-using Logger.Configuration;
 using Logger.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,12 +14,15 @@ namespace Logger.DependencyResolver
         {
             services.AddTransient<ILogger>(c =>
             {
-                var config = configuration.GetSection("LoggeerFile").Get<LoggerFileConfiguration>();
+                var logFile = Environment.GetEnvironmentVariable("USUARIOS_LOGGER_FILE");
+                var interval = Environment.GetEnvironmentVariable("USUARIOS_LOGGER_INTERVAL_PERIOD");
                 return new LoggerConfiguration().MinimumLevel.Debug()
                     .WriteTo.Console()
                     .WriteTo.File(
-                        $"{config.Path}\\{config.FileName}",
-                        rollingInterval: (RollingInterval)Enum.Parse(typeof(RollingInterval), config.IntervalPeriod)).CreateLogger();
+                        $"{logFile}",
+                        rollingInterval: (RollingInterval)Enum.Parse(typeof(RollingInterval), 
+                        !String.IsNullOrEmpty(interval) ? interval : "Day")
+                    ).CreateLogger();
             });
             services.AddTransient<ILoggerService, LoggerService>();
         }

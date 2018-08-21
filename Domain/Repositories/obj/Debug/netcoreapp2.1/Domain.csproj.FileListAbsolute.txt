@@ -1,0 +1,9 @@
+/var/projetos/asp-net-core-ddd/Domain/bin/Debug/netcoreapp2.1/Domain.deps.json
+/var/projetos/asp-net-core-ddd/Domain/bin/Debug/netcoreapp2.1/Domain.dll
+/var/projetos/asp-net-core-ddd/Domain/bin/Debug/netcoreapp2.1/Domain.pdb
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.csprojAssemblyReference.cache
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.csproj.CoreCompileInputs.cache
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.AssemblyInfoInputs.cache
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.AssemblyInfo.cs
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.dll
+/var/projetos/asp-net-core-ddd/Domain/obj/Debug/netcoreapp2.1/Domain.pdb

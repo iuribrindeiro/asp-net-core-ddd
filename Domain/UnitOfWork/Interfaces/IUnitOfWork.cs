@@ -1,7 +1,9 @@
-﻿namespace Domain.UnitOfWork.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Domain.UnitOfWork.Interfaces
 {
     public interface IUnitOfWork
     {
-        void Commit();
+        Task CommitAsync();
     }
 }
